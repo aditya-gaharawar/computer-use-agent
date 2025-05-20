@@ -6,6 +6,7 @@ import {
 } from "@/lib/streaming";
 import { SANDBOX_TIMEOUT_MS } from "@/lib/config";
 import { OpenAIComputerStreamer } from "@/lib/streaming/openai";
+import { GoogleComputerStreamer } from "@/lib/streaming/google";
 import { logError } from "@/lib/logger";
 import { ResolutionScaler } from "@/lib/streaming/resolution";
 
@@ -23,6 +24,10 @@ class StreamerFactory {
       case "anthropic":
       // currently not implemented
       /* return new AnthropicComputerStreamer(desktop, resolutionScaler); */
+      // Fall through to default or handle explicitly if you have Anthropic implemented
+      // For now, let's assume it might fall through or you'll add it later.
+      case "google": // New case for Google
+        return new GoogleComputerStreamer(desktop, resolutionScaler);
       case "openai":
       default:
         return new OpenAIComputerStreamer(desktop, resolutionScaler);
